@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Path } from 'react-native-svg'
+import { Svg } from 'expo'
 import * as interpolate from 'd3-interpolate-path'
+
+const { Path } = Svg
 
 class AnimatedPath extends Component {
 
@@ -13,7 +15,7 @@ class AnimatedPath extends Component {
 
     componentWillReceiveProps(props) {
         const { d: newD, animate } = props
-        const { d: oldD }          = this.props
+        const { d: oldD } = this.props
 
         this.newD = newD
 
@@ -25,7 +27,7 @@ class AnimatedPath extends Component {
             return
         }
 
-        this.newD         = newD
+        this.newD = newD
         this.interpolator = interpolate.interpolatePath(oldD, newD)
 
         this._animate()
